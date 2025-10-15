@@ -14,14 +14,14 @@ public class Scene {
 
     public void setExit(Direction direction, Scene neighbor) {
         //itt addunk hozzá kijáratot a helyszínhez, irány és szomszéd helyszín formájában
-        // A HashMap put() metódusa az hasonló az arrayList add() metódusához, új elemet addunk hozzá
+        // A HashMap put() metódusa az hasonló az arrayList add() metódusához, új elemet adunk hozzá
         // csak ez key (dirtection) és value(szomszéd) párokat vár mindig. A Direction egx ENUM
         exits.put(direction, neighbor);
     }
     public void addItem (Item item) {
         items.add(item);
     }
-    //az adott irányban milyen szomszédos helyszín van
+    //az adott irányban milyen szomszédos helyszín van, kulcs alapján kapjuk meg a helyszínt az adott irányban
     public Scene getExit(Direction direction) {
         return exits.get(direction);
     }
