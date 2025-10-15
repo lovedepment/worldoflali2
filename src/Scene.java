@@ -26,4 +26,7 @@ public class Scene {
         return exits.get(direction);
     }
 
+    public String getDescription() {
+        return description;
+    }
 }

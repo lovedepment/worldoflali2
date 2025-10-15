@@ -3,25 +3,25 @@ import java.util.Scanner;
 
 public class Game {
 
+    Player player;
+
     public Game () {
-        Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó taláható");
-        Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó");
-        Scene armory = new Scene("A fegyvertárban vagy. Látsz egy fényes kardot az állványon");
+        Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó taláható.");
+        Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó.");
+        Scene armory = new Scene("A fegyvertárban vagy. Látsz egy fényes kardot az állványon.");
 
         entrance.setExit(Direction.ESZAK, hall);
         hall.setExit(Direction.DEL, entrance);
         hall.setExit(Direction.NYUGAT, armory);
         armory.setExit(Direction.KELET, hall);
-    }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.play();
+        player = new Player(entrance);
     }
 
     private void play() {
         Scanner scanner = new Scanner(System.in);
         display("Üdv a várkalandban");
+        display(player.getScene().getDescription());
 
         //ez maga játék ciklus
         while(true){
@@ -41,5 +41,10 @@ public class Game {
 
     private void display(String message) {
         System.out.println(message);
+    }
+
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.play();
     }
 }
