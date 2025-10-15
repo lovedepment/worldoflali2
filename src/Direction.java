@@ -2,7 +2,7 @@ public enum Direction {
     
     ESZAK("észak"),
     DEL("dél"),
-    NYUGATi("nyugat"),
+    NYUGAT("nyugat"),
     KELET("kelet");
 
     private final String direction;

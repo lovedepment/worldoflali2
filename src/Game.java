@@ -3,6 +3,17 @@ import java.util.Scanner;
 
 public class Game {
 
+    public Game () {
+        Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó taláható");
+        Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó");
+        Scene armory = new Scene("A fegyvertárban vagy. Látsz egy fényes kardot az állványon");
+
+        entrance.setExit(Direction.ESZAK, hall);
+        hall.setExit(Direction.DEL, entrance);
+        hall.setExit(Direction.NYUGAT, armory);
+        armory.setExit(Direction.KELET, hall);
+    }
+
     public static void main(String[] args) {
         Game game = new Game();
         game.play();
