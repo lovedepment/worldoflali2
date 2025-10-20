@@ -5,7 +5,7 @@ public class Game {
 
     Player player;
 
-    public Game () {
+    public Game() {
         Scene entrance = new Scene("A vár bejáratánál állsz. Északra egy nagy faajtó taláható.");
         Scene hall = new Scene("A nagyteremben vagy. Keletre és nyugatra is van egy-egy ajtó.");
         Scene armory = new Scene("A fegyvertárban vagy. Látsz egy fényes kardot az állványon.");
@@ -21,22 +21,44 @@ public class Game {
     private void play() {
         Scanner scanner = new Scanner(System.in);
         display("Üdv a várkalandban");
-        display(player.getScene().getDescription());
 
         //ez maga játék ciklus
-        while(true){
+        while (true) {
+            display("-----------------------------------");
+            display(player.getCurrentScene().getDescription());
+            display(">");
+            //scaner nextline az mindid egy telje ssort olvas be
             String input = scanner.nextLine().toLowerCase(Locale.ROOT).trim();
-            String command = input;
+            String[] words = input.split(" ");
+
+            String command = words[0];
+
+            //Ha van második szó itt kinyerjük egy ternary operator-ral -> ternary operator az ugyanaz mint egy if-then, csak tömör
+            String subject = words.length > 1 ? words[1] : "";
 
             switch (command) {
-
-                case "kilep":
+                case "menj":
+                    Direction direction = Direction.fromString(subject);
+                    moveplayer(direction);
+                    break; // ha nincs akkor tovább meg a következő ágra,
+                case "kilép":
                     display("Köszi a játékot!");
                     scanner.close();
                     return;
+                default:
+                    display("Nem értem a parancsot");
+                    break;
             }
 
         }
+    }
+
+    private void moveplayer(Direction direction) {
+        Scene nextScene = player.getCurrentScene().getExit(direction);
+        if (nextScene == null){
+            display("Nem mehetsz arra");
+        }
+        player.setCurrentScene(nextScene);
     }
 
     private void display(String message) {

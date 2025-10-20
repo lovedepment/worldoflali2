@@ -10,11 +10,11 @@ public class Player {
         inventory = new ArrayList<>();
     }
 
-    public Scene getScene() {
+    public Scene getCurrentScene() {
         return scene;
     }
 
-    public void setScene(Scene scene) {
+    public void setCurrentScene(Scene scene) {
         this.scene = scene;
     }
 
